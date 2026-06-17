@@ -13,6 +13,7 @@ import { Reviews } from './components/Reviews';
 import { Comparison } from './components/Comparison';
 import { ShippingSection } from './components/ShippingSection';
 import { Faq } from './components/Faq';
+import { SupportSection } from './components/SupportSection';
 import { FinalCta } from './components/FinalCta';
 import { OrtevaFooter } from './components/OrtevaFooter';
 import { StickyAtcBar } from './components/StickyAtcBar';
@@ -40,6 +41,7 @@ export function OrtevaPage() {
         <Comparison />
         <ShippingSection />
         <Faq />
+        <SupportSection />
         <FinalCta />
       </main>
       <OrtevaFooter />
