@@ -1,0 +1,25 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section orteva-final" id="shopify-section-{{ section.id }}-f">
+  <span class="orteva-final__glow"></span>
+  <div class="orteva-container orteva-final__inner">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.body }}</p>
+    <div style="margin-top:2rem"><a href="#orteva-hero" class="orteva-btn orteva-btn--ghost">{{ section.settings.cta }} &rarr;</a></div>
+    <ul class="orteva-final__promises">
+      <li>&#128666; Free worldwide shipping</li><li>&#8634; Free returns &amp; exchanges</li><li>&#10003; 30-day comfort-fit guarantee</li>
+    </ul>
+    <p style="color:rgba(255,255,255,.4);font-size:.72rem;max-width:620px;margin:2rem auto 0;line-height:1.5">{{ section.settings.disclaimer }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Final CTA",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Take the first step toward comfortable movement." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Free worldwide shipping, free returns, and a 30-day comfort-fit guarantee. Your knees have carried you this far — give them something back." },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Get my Orteva" },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "Orteva is a wellness and support garment intended to provide comfort and compression. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease. Statements have not been evaluated by the FDA. Individual results vary." }
+  ],
+  "presets": [{ "name": "Orteva Final CTA" }]
+}
+{% endschema %}

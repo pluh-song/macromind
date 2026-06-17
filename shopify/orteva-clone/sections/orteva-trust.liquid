@@ -1,0 +1,27 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-trust" id="shopify-section-{{ section.id }}-t">
+  <div class="orteva-container">
+    <div class="orteva-trust__grid">
+      <div class="orteva-trust__item"><b>{{ section.settings.s1 }}</b><span>{{ section.settings.l1 }}</span></div>
+      <div class="orteva-trust__item"><b>{{ section.settings.s2 }}</b><span>{{ section.settings.l2 }}</span></div>
+      <div class="orteva-trust__item"><b>{{ section.settings.s3 }}</b><span>{{ section.settings.l3 }}</span></div>
+      <div class="orteva-trust__item"><b>{{ section.settings.s4 }}</b><span>{{ section.settings.l4 }}</span></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Trust",
+  "settings": [
+    { "type": "text", "id": "s1", "label": "Stat 1", "default": "30,000+" },
+    { "type": "text", "id": "l1", "label": "Label 1", "default": "Sleeves shipped" },
+    { "type": "text", "id": "s2", "label": "Stat 2", "default": "4.8 ★" },
+    { "type": "text", "id": "l2", "label": "Label 2", "default": "From 3,000+ reviews" },
+    { "type": "text", "id": "s3", "label": "Stat 3", "default": "✓" },
+    { "type": "text", "id": "l3", "label": "Label 3", "default": "Free returns & exchanges" },
+    { "type": "text", "id": "s4", "label": "Stat 4", "default": "🔒" },
+    { "type": "text", "id": "l4", "label": "Label 4", "default": "Secure encrypted checkout" }
+  ],
+  "presets": [{ "name": "Orteva Trust" }]
+}
+{% endschema %}

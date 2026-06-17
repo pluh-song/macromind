@@ -1,0 +1,48 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="shopify-section-{{ section.id }}-faq" style="background:#fff">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="orteva-faq">
+      {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+        <summary>{{ block.settings.q }}</summary>
+        <p>{{ block.settings.a }}</p>
+      </details>
+      {%- endfor -%}
+      <div class="orteva-guarantee">
+        <div><h3>{{ section.settings.g_title }}</h3><p>{{ section.settings.g_body }}</p></div>
+        <a href="#orteva-hero" class="orteva-btn">{{ section.settings.g_cta }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Good questions" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Still deciding? Let’s clear it up" },
+    { "type": "text", "id": "g_title", "label": "Guarantee title", "default": "30-day comfort-fit guarantee" },
+    { "type": "textarea", "id": "g_body", "label": "Guarantee body", "default": "Wear it, walk in it, climb your stairs with it. If Orteva isn’t right within 30 days, send it back for a full refund. Free shipping, free returns, free exchanges." },
+    { "type": "text", "id": "g_cta", "label": "Guarantee button", "default": "Try Orteva" }
+  ],
+  "blocks": [
+    { "type": "qa", "name": "Question", "settings": [
+      { "type": "text", "id": "q", "label": "Question", "default": "How long can I wear it each day?" },
+      { "type": "textarea", "id": "a", "label": "Answer", "default": "Most people wear it comfortably for several hours, and many keep it on all day." }
+    ]}
+  ],
+  "max_blocks": 10,
+  "presets": [{ "name": "Orteva FAQ", "blocks": [
+    { "type": "qa", "settings": { "q": "How long can I wear it each day?", "a": "Most people wear Orteva comfortably for several hours at a time, and many keep it on through a full day. Start with a few hours, see how your knee feels, and build up. If anything feels too tight, size up — exchanges are free." }},
+    { "type": "qa", "settings": { "q": "Can I really wear it all day?", "a": "Yes. It’s breathable, moisture-wicking and slim enough to sit under trousers, so it’s designed for all-day wear. We suggest taking it off overnight to give your skin a break." }},
+    { "type": "qa", "settings": { "q": "Is it good for arthritis or stiff knees?", "a": "Orteva is a wellness and support garment that provides comfort and compression, which many people with everyday stiffness find reassuring. It is not a medical device and is not intended to treat or cure any condition. If you have a diagnosed condition, please check with your healthcare provider." }},
+    { "type": "qa", "settings": { "q": "Can I exercise in it?", "a": "Absolutely. Plenty of customers wear Orteva for walks, runs, hikes, lifting and court sports. The dual grip cuffs keep it in place while you move." }},
+    { "type": "qa", "settings": { "q": "How do I choose my size and side?", "a": "Size is chosen by body weight (S–XL) for a genuine fit — see the size guide in the buy box. Because the shaping is mirrored per knee, just pick Left or Right for each sleeve." }},
+    { "type": "qa", "settings": { "q": "How do I wash and care for it?", "a": "Hand wash cool with mild soap, or a gentle machine cycle in a laundry bag. Lay flat to dry. Avoid the tumble dryer and fabric softener so the knit and silicone keep their grip." }}
+  ]}]
+}
+{% endschema %}

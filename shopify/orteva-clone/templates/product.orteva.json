@@ -1,0 +1,383 @@
+{
+  "sections": {
+    "orteva-hero": {
+      "type": "orteva-hero",
+      "settings": {}
+    },
+    "orteva-trust": {
+      "type": "orteva-trust",
+      "settings": {}
+    },
+    "orteva-problem": {
+      "type": "orteva-problem",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Stairs feel like a decision",
+            "body": "That flush of dread before every staircase — up to bed, down to the laundry. You start counting steps."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "You quietly stopped doing things",
+            "body": "The garden, the long walk, the dance floor. Nobody announced it. Your knees just made the call for you."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "title": "Standing wears you down",
+            "body": "A shift, a queue, a kitchen afternoon. By the end your knees are doing all the complaining."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "title": "Mornings start rusty",
+            "body": "That first step out of bed has an ache built in. It loosens eventually — but you shouldn’t have to wait for it."
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "title": "Swelling that won’t quit",
+            "body": "After a busy day the puffiness settles in and lingers, long after you’ve put your feet up."
+          }
+        },
+        "card_6": {
+          "type": "card",
+          "settings": {
+            "title": "That “might give out” feeling",
+            "body": "On a curb, a wet floor, a hike downhill — the little wobble that makes you brace and slow right down."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5",
+        "card_6"
+      ],
+      "settings": {}
+    },
+    "orteva-solution": {
+      "type": "orteva-solution",
+      "blocks": {
+        "feat_1": {
+          "type": "feat",
+          "settings": {
+            "title": "Graduated compression",
+            "body": "A medical-grade nylon/spandex knit hugs the joint to support tired, achy knees through a long day."
+          }
+        },
+        "feat_2": {
+          "type": "feat",
+          "settings": {
+            "title": "Anatomical gel ring",
+            "body": "A silicone ring cradles and centers your kneecap — the difference between targeted support and a plain tube."
+          }
+        },
+        "feat_3": {
+          "type": "feat",
+          "settings": {
+            "title": "Encourages circulation",
+            "body": "Gentle, even pressure supports healthy blood flow so your knees feel fresher for longer."
+          }
+        },
+        "feat_4": {
+          "type": "feat",
+          "settings": {
+            "title": "Helps calm swelling",
+            "body": "Consistent compression can help manage the everyday puffiness that builds up after activity."
+          }
+        },
+        "feat_5": {
+          "type": "feat",
+          "settings": {
+            "title": "Breathable all-day comfort",
+            "body": "Moisture-wicking and slim enough to disappear under trousers — wear it morning to night."
+          }
+        },
+        "feat_6": {
+          "type": "feat",
+          "settings": {
+            "title": "Dual non-slip cuffs",
+            "body": "Two silicone grip bands keep it exactly where you put it. No rolling, bunching, or sliding down."
+          }
+        }
+      },
+      "block_order": [
+        "feat_1",
+        "feat_2",
+        "feat_3",
+        "feat_4",
+        "feat_5",
+        "feat_6"
+      ],
+      "settings": {}
+    },
+    "orteva-benefits": {
+      "type": "orteva-benefits",
+      "blocks": {
+        "b_1": {
+          "type": "b",
+          "settings": {
+            "title": "Real, everyday relief",
+            "body": "Support where you feel it most, so the day stops revolving around your knees."
+          }
+        },
+        "b_2": {
+          "type": "b",
+          "settings": {
+            "title": "Steadier on your feet",
+            "body": "The gel ring helps you feel centered and confident on stairs and uneven ground."
+          }
+        },
+        "b_3": {
+          "type": "b",
+          "settings": {
+            "title": "Less end-of-day swelling",
+            "body": "Even compression helps manage the puffiness that creeps in after a busy day."
+          }
+        },
+        "b_4": {
+          "type": "b",
+          "settings": {
+            "title": "Move more freely",
+            "body": "Get back to the walks, errands and hobbies you’d quietly started avoiding."
+          }
+        },
+        "b_5": {
+          "type": "b",
+          "settings": {
+            "title": "Comfort that lasts",
+            "body": "Breathable, slim and light — comfortable enough to forget you’re wearing it."
+          }
+        },
+        "b_6": {
+          "type": "b",
+          "settings": {
+            "title": "Gym to everyday",
+            "body": "From a workout to the supermarket, one sleeve that keeps up with your whole day."
+          }
+        }
+      },
+      "block_order": [
+        "b_1",
+        "b_2",
+        "b_3",
+        "b_4",
+        "b_5",
+        "b_6"
+      ],
+      "settings": {}
+    },
+    "orteva-how": {
+      "type": "orteva-how",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Slip it on",
+            "body": "Pull it up so the gel ring sits around your kneecap. The grip cuffs do the rest."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Compression goes to work",
+            "body": "Graduated pressure and the stabilizer ring support the joint the moment it’s on."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Move with confidence",
+            "body": "Stairs, errands, a long walk — go about your day feeling steady and supported."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {}
+    },
+    "orteva-science": {
+      "type": "orteva-science",
+      "settings": {}
+    },
+    "orteva-reviews": {
+      "type": "orteva-reviews",
+      "blocks": {
+        "rev_1": {
+          "type": "rev",
+          "settings": {
+            "name": "Margaret R.",
+            "meta": "62 · Lives with arthritis",
+            "quote": "The morning stiffness used to set the tone for my whole day. Now I put Orteva on with my coffee and the first hour just feels… normal again."
+          }
+        },
+        "rev_2": {
+          "type": "rev",
+          "settings": {
+            "name": "Dale W.",
+            "meta": "34 · Marathon runner",
+            "quote": "I wear it on long runs and my knee feels noticeably more stable on the downhills. The gel ring actually stays put — no sliding."
+          }
+        },
+        "rev_3": {
+          "type": "rev",
+          "settings": {
+            "name": "Anita P.",
+            "meta": "49 · ICU nurse",
+            "quote": "Twelve-hour shifts on hard floors. By hour ten my knees used to be done. This has genuinely changed how I feel walking to my car."
+          }
+        },
+        "rev_4": {
+          "type": "rev",
+          "settings": {
+            "name": "Frank T.",
+            "meta": "71 · Daily dog-walker",
+            "quote": "I’d shortened my walks without really admitting it. Got the 2-pack, one for each knee, and Buddy and I are back to the long loop."
+          }
+        },
+        "rev_5": {
+          "type": "rev",
+          "settings": {
+            "name": "Priya S.",
+            "meta": "38 · Weekend hiker",
+            "quote": "Slim enough to wear under leggings, supportive enough that uneven trails don’t worry me anymore. Wish I’d found it sooner."
+          }
+        },
+        "rev_6": {
+          "type": "rev",
+          "settings": {
+            "name": "Robert M.",
+            "meta": "58 · 6 weeks post-surgery",
+            "quote": "My physio okayed light compression and this was comfortable from day one. The non-slip bands mean I’m not constantly tugging it up."
+          }
+        },
+        "rev_7": {
+          "type": "rev",
+          "settings": {
+            "name": "Yvonne C.",
+            "meta": "66 · Retired teacher",
+            "quote": "Stairs were the worst part of my day. They’re still stairs — but I don’t dread them the same way. That’s worth a lot to me."
+          }
+        },
+        "rev_8": {
+          "type": "rev",
+          "settings": {
+            "name": "Marcus J.",
+            "meta": "29 · Rec-league basketball",
+            "quote": "Confidence on the court is back. Light, breathable, doesn’t bunch behind the knee when I’m moving. Bought a second one immediately."
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4",
+        "rev_5",
+        "rev_6",
+        "rev_7",
+        "rev_8"
+      ],
+      "settings": {}
+    },
+    "orteva-comparison": {
+      "type": "orteva-comparison",
+      "settings": {}
+    },
+    "orteva-shipping": {
+      "type": "orteva-shipping",
+      "settings": {}
+    },
+    "orteva-faq": {
+      "type": "orteva-faq",
+      "blocks": {
+        "qa_1": {
+          "type": "qa",
+          "settings": {
+            "q": "How long can I wear it each day?",
+            "a": "Most people wear Orteva comfortably for several hours at a time, and many keep it on through a full day. Start with a few hours, see how your knee feels, and build up. If anything feels too tight, size up — exchanges are free."
+          }
+        },
+        "qa_2": {
+          "type": "qa",
+          "settings": {
+            "q": "Can I really wear it all day?",
+            "a": "Yes. It’s breathable, moisture-wicking and slim enough to sit under trousers, so it’s designed for all-day wear. We suggest taking it off overnight to give your skin a break."
+          }
+        },
+        "qa_3": {
+          "type": "qa",
+          "settings": {
+            "q": "Is it good for arthritis or stiff knees?",
+            "a": "Orteva is a wellness and support garment that provides comfort and compression, which many people with everyday stiffness find reassuring. It is not a medical device and is not intended to treat or cure any condition. If you have a diagnosed condition, please check with your healthcare provider."
+          }
+        },
+        "qa_4": {
+          "type": "qa",
+          "settings": {
+            "q": "Can I exercise in it?",
+            "a": "Absolutely. Plenty of customers wear Orteva for walks, runs, hikes, lifting and court sports. The dual grip cuffs keep it in place while you move."
+          }
+        },
+        "qa_5": {
+          "type": "qa",
+          "settings": {
+            "q": "How do I choose my size and side?",
+            "a": "Size is chosen by body weight (S–XL) for a genuine fit — see the size guide in the buy box. Because the shaping is mirrored per knee, just pick Left or Right for each sleeve."
+          }
+        },
+        "qa_6": {
+          "type": "qa",
+          "settings": {
+            "q": "How do I wash and care for it?",
+            "a": "Hand wash cool with mild soap, or a gentle machine cycle in a laundry bag. Lay flat to dry. Avoid the tumble dryer and fabric softener so the knit and silicone keep their grip."
+          }
+        }
+      },
+      "block_order": [
+        "qa_1",
+        "qa_2",
+        "qa_3",
+        "qa_4",
+        "qa_5",
+        "qa_6"
+      ],
+      "settings": {}
+    },
+    "orteva-final": {
+      "type": "orteva-final",
+      "settings": {}
+    },
+    "orteva-sticky": {
+      "type": "orteva-sticky",
+      "settings": {}
+    }
+  },
+  "order": [
+    "orteva-hero",
+    "orteva-trust",
+    "orteva-problem",
+    "orteva-solution",
+    "orteva-benefits",
+    "orteva-how",
+    "orteva-science",
+    "orteva-reviews",
+    "orteva-comparison",
+    "orteva-shipping",
+    "orteva-faq",
+    "orteva-final",
+    "orteva-sticky"
+  ]
+}

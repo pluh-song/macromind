@@ -1,0 +1,214 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+{%- assign def_variant = product.variants | where: 'title', '2 Sleeves' | first -%}
+{%- unless def_variant -%}{%- assign def_variant = product.selected_or_first_available_variant -%}{%- endunless -%}
+<section class="orteva-scope orteva-section orteva-hero" id="orteva-hero">
+  <div class="orteva-container">
+    <div class="orteva-hero__intro">
+      <span class="orteva-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-hero__h1">{{ section.settings.headline }}</h2>
+      <p class="orteva-sub">{{ section.settings.subhead }}</p>
+    </div>
+
+    <div class="orteva-hero__grid">
+      <!-- Gallery: bound to product.media -->
+      <div>
+        <div class="orteva-gallery__main">
+          {%- if product.media.size > 0 -%}
+            <img id="orteva-main-img" src="{{ product.featured_media | image_url: width: 1000 }}" alt="{{ product.featured_media.alt | escape }}" width="1000" height="1000" fetchpriority="high">
+          {%- else -%}
+            <img id="orteva-main-img" src="{{ 'product-1.png' | placeholder_svg_tag }}" alt="Product image" width="1000" height="1000">
+          {%- endif -%}
+          <span class="orteva-gallery__badge">&#9733; {{ section.settings.rating }} <span style="color:#5b6b80;font-weight:500">({{ section.settings.review_count }})</span></span>
+        </div>
+        {%- if product.media.size > 1 -%}
+        <div class="orteva-gallery__thumbs">
+          {%- for media in product.media limit: 5 -%}
+            <button type="button" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" data-full="{{ media | image_url: width: 1000 }}" onclick="ortevaSwap(this)">
+              <img src="{{ media | image_url: width: 200 }}" alt="" width="200" height="200" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Buy box -->
+      <div class="orteva-card orteva-buy">
+        <div class="orteva-buy__rating" onclick="document.getElementById('orteva-reviews').scrollIntoView({behavior:'smooth'})">
+          <span class="orteva-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <strong>{{ section.settings.rating }}</strong>
+          <span style="color:#5b6b80">{{ section.settings.review_count }} verified reviews</span>
+        </div>
+        <h1 class="orteva-buy__title">{{ product.title }}</h1>
+        <p class="orteva-buy__lead">{{ section.settings.buy_lead }}</p>
+        <ul class="orteva-ticks">
+          <li>{{ section.settings.tick_1 }}</li>
+          <li>{{ section.settings.tick_2 }}</li>
+          <li>{{ section.settings.tick_3 }}</li>
+        </ul>
+
+        <div class="orteva-price">
+          <span class="orteva-price__now" id="orteva-price-now">{{ def_variant.price | money }}</span>
+          <span class="orteva-price__was" id="orteva-price-was">{{ def_variant.compare_at_price | money }}</span>
+          {%- assign sv = def_variant.compare_at_price | minus: def_variant.price | times: 100.0 | divided_by: def_variant.compare_at_price | round -%}
+          <span class="orteva-price__save" id="orteva-price-save">Save {{ sv }}%</span>
+        </div>
+        <p class="orteva-free">&#128666; Free shipping &amp; free returns</p>
+
+        <p class="orteva-step"><span>1</span> {{ section.settings.step1_label }}</p>
+        <div class="orteva-packs" role="radiogroup" aria-label="Choose your pack">
+          {%- for v in product.variants -%}
+            {%- assign cnt = v.title | split: ' ' | first -%}
+            {%- assign isdef = false -%}
+            {%- if v.id == def_variant.id -%}{%- assign isdef = true -%}{%- endif -%}
+            {%- assign vsave = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%}
+            <button type="button" class="orteva-pack" role="radio" aria-checked="{{ isdef }}"
+              data-variant-id="{{ v.id }}" data-count="{{ cnt }}"
+              data-price="{{ v.price | money }}" data-compare="{{ v.compare_at_price | money }}" data-save="{{ vsave }}"
+              onclick="ortevaPickPack(this)">
+              <span class="orteva-pack__dot">&#10003;</span>
+              <span class="orteva-pack__main">
+                <span class="orteva-pack__title">{{ v.title }}
+                  {%- if v.title contains '2' %} <span class="orteva-pill orteva-pill--blue">Most popular &middot; Save {{ vsave }}%</span>
+                  {%- elsif v.title contains '4' %} <span class="orteva-pill orteva-pill--green">Best value</span>{% endif -%}
+                </span>
+                <span class="orteva-pack__sub">
+                  {%- if cnt == '1' %}Support one knee{% elsif cnt == '2' %}Cover both knees{% else %}4 sleeves &middot; stock up or gift{% endif -%}
+                </span>
+                {%- unless cnt == '1' -%}<span class="orteva-pack__unit">just {{ v.price | divided_by: cnt | money }}/sleeve</span>{%- endunless -%}
+              </span>
+              <span class="orteva-pack__price">
+                <b>{{ v.price | money }}</b><s>{{ v.compare_at_price | money }}</s><em>Save {{ vsave }}%</em>
+              </span>
+            </button>
+          {%- endfor -%}
+        </div>
+
+        <p class="orteva-step"><span>2</span> {{ section.settings.step2_label }}</p>
+        <p style="font-size:.78rem;color:#5b6b80;margin:-.4rem 0 .6rem">Between sizes? Size up for all-day comfort, down for a firmer fit. Exchanges are free.</p>
+        <div id="orteva-configs">
+          {%- for i in (1..4) -%}
+          <div class="orteva-config" data-config="{{ i }}"{% if i > 2 %} hidden{% endif %}>
+            <p class="orteva-config__label">Knee sleeve {{ i }}</p>
+            <p class="orteva-config__field">Size (by body weight)</p>
+            <div class="orteva-sizes" role="radiogroup">
+              {%- assign sizes = 'S|90-130 lbs,M|131-175 lbs,L|176-215 lbs,XL|216-260 lbs' | split: ',' -%}
+              {%- for s in sizes -%}
+                {%- assign sp = s | split: '|' -%}
+                <button type="button" role="radio" aria-checked="{% if sp[0] == 'M' %}true{% else %}false{% endif %}" data-size="{{ sp[0] }}" onclick="ortevaPickOpt(this)"><b>{{ sp[0] }}</b><small>{{ sp[1] }}</small></button>
+              {%- endfor -%}
+            </div>
+            <p class="orteva-config__field">Side</p>
+            <div class="orteva-side" role="radiogroup">
+              {%- assign defside = 'Right' -%}{%- assign mod = i | modulo: 2 -%}{%- if mod == 0 %}{%- assign defside = 'Left' -%}{% endif -%}
+              <button type="button" role="radio" aria-checked="{% if defside == 'Right' %}true{% else %}false{% endif %}" data-side="Right" onclick="ortevaPickOpt(this)">Right</button>
+              <button type="button" role="radio" aria-checked="{% if defside == 'Left' %}true{% else %}false{% endif %}" data-side="Left" onclick="ortevaPickOpt(this)">Left</button>
+            </div>
+          </div>
+          {%- endfor -%}
+        </div>
+
+        <details style="margin-top:.75rem">
+          <summary style="cursor:pointer;color:#1d6fe0;font-weight:600;font-size:.85rem">&#128207; Size guide</summary>
+          <div style="margin-top:.5rem;font-size:.85rem;color:#5b6b80">
+            <p style="margin:.25rem 0">S &middot; 90&ndash;130 lbs &nbsp;&bull;&nbsp; M &middot; 131&ndash;175 lbs &nbsp;&bull;&nbsp; L &middot; 176&ndash;215 lbs &nbsp;&bull;&nbsp; XL &middot; 216&ndash;260 lbs</p>
+            <p style="margin:.25rem 0">Measure ~4 in (10 cm) above the center of your kneecap. Between sizes, size up for comfort.</p>
+          </div>
+        </details>
+
+        <button type="button" class="orteva-btn orteva-atc" id="orteva-atc" onclick="ortevaAddToCart()">Add to cart &middot; <span id="orteva-atc-price">{{ def_variant.price | money }}</span></button>
+        <p class="orteva-microcopy">Most popular &mdash; selected by most customers</p>
+
+        <div class="orteva-reassure">
+          <span><b>&#128274;</b>Secure checkout</span>
+          <span><b>&#8634;</b>Free returns</span>
+          <span><b>&#10003;</b>30-day guarantee</span>
+        </div>
+        <div class="orteva-pay"><span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>Apple Pay</span><span>Shop Pay</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.ortevaSel = { id: {{ def_variant.id }}, count: 2 };
+  function ortevaSwap(btn){
+    document.getElementById('orteva-main-img').src = btn.dataset.full;
+    btn.parentNode.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-current','false'); });
+    btn.setAttribute('aria-current','true');
+  }
+  function ortevaPickPack(btn){
+    btn.parentNode.querySelectorAll('.orteva-pack').forEach(function(b){ b.setAttribute('aria-checked','false'); });
+    btn.setAttribute('aria-checked','true');
+    var price = btn.dataset.price, compare = btn.dataset.compare, save = btn.dataset.save, count = parseInt(btn.dataset.count,10);
+    document.getElementById('orteva-price-now').textContent = price;
+    document.getElementById('orteva-price-was').textContent = compare;
+    document.getElementById('orteva-price-save').textContent = 'Save ' + save + '%';
+    document.getElementById('orteva-atc-price').textContent = price;
+    document.querySelectorAll('#orteva-configs .orteva-config').forEach(function(c,i){ c.hidden = (i >= count); });
+    window.ortevaSel = { id: btn.dataset.variantId, count: count, price: price, compare: compare, save: save };
+    document.dispatchEvent(new CustomEvent('orteva:variant', { detail: window.ortevaSel }));
+  }
+  function ortevaPickOpt(btn){
+    btn.parentNode.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-checked','false'); });
+    btn.setAttribute('aria-checked','true');
+  }
+  async function ortevaAddToCart(){
+    var btn = document.getElementById('orteva-atc');
+    var props = {};
+    document.querySelectorAll('#orteva-configs .orteva-config').forEach(function(c,i){
+      if(c.hidden) return;
+      var size = c.querySelector('[data-size][aria-checked="true"]');
+      var side = c.querySelector('[data-side][aria-checked="true"]');
+      props['Sleeve ' + (i+1) + ' size'] = size ? size.dataset.size : 'M';
+      props['Sleeve ' + (i+1) + ' side'] = side ? side.dataset.side : 'Right';
+    });
+    btn.disabled = true; var old = btn.innerHTML; btn.textContent = 'Adding...';
+    try{
+      var res = await fetch('/cart/add.js', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ items:[{ id: window.ortevaSel.id, quantity:1, properties: props }] }) });
+      if(!res.ok) throw new Error('add failed');
+      document.dispatchEvent(new CustomEvent('cart:refresh'));
+      window.location.href = '/cart';
+    }catch(e){ window.location.href='/cart'; }
+    finally{ btn.disabled=false; btn.innerHTML=old; }
+  }
+</script>
+
+{%- assign ld_price = product.price | divided_by: 100.00 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "image": [{{ product.featured_media | image_url: width: 1200 | prepend: "https:" | json }}],
+  "description": {{ product.description | strip_html | truncate: 300 | json }},
+  "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "3000" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "lowPrice": "34.99",
+    "highPrice": "74.99",
+    "availability": "https://schema.org/InStock",
+    "url": {{ product.url | prepend: shop.url | json }}
+  }
+}
+</script>
+{% schema %}
+{
+  "name": "Orteva Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Knee-specific · Gel stabilizer ring" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Steady, supported knees — from the first step out of bed to the last on your feet." },
+    { "type": "richtext", "id": "subhead", "label": "Subhead", "default": "<p>Medical-grade graduated compression plus an anatomical gel ring that cradles and centers your kneecap — targeted support, not a generic tube of fabric.</p>" },
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.8" },
+    { "type": "text", "id": "review_count", "label": "Review count", "default": "3,000+" },
+    { "type": "richtext", "id": "buy_lead", "label": "Buy box lead", "default": "<p>Targeted support from medical-grade graduated compression and an anatomical gel stabilizer ring.</p>" },
+    { "type": "text", "id": "tick_1", "label": "Tick 1", "default": "Eases everyday aches and stiffness" },
+    { "type": "text", "id": "tick_2", "label": "Tick 2", "default": "Stability on stairs and uneven ground" },
+    { "type": "text", "id": "tick_3", "label": "Tick 3", "default": "Breathable and slim enough to wear all day" },
+    { "type": "text", "id": "step1_label", "label": "Step 1 label", "default": "Choose your pack" },
+    { "type": "text", "id": "step2_label", "label": "Step 2 label", "default": "Set up your sleeve(s)" }
+  ],
+  "presets": [{ "name": "Orteva Hero" }]
+}
+{% endschema %}

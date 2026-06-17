@@ -1,0 +1,39 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="shopify-section-{{ section.id }}-h" style="background:#fff">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="orteva-grid orteva-grid--3">
+      {%- for block in section.blocks -%}
+      <div class="orteva-tile" {{ block.shopify_attributes }}>
+        <span class="orteva-tile__ico" style="border-radius:999px;background:#0c1626">{{ forloop.index }}</span>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.body }}</p>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva How",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "On in seconds. Working all day." }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Slip it on" },
+      { "type": "textarea", "id": "body", "label": "Body", "default": "Pull it up so the gel ring sits around your kneecap." }
+    ]}
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Orteva How", "blocks": [
+    { "type": "step", "settings": { "title": "Slip it on", "body": "Pull it up so the gel ring sits around your kneecap. The grip cuffs do the rest." }},
+    { "type": "step", "settings": { "title": "Compression goes to work", "body": "Graduated pressure and the stabilizer ring support the joint the moment it’s on." }},
+    { "type": "step", "settings": { "title": "Move with confidence", "body": "Stairs, errands, a long walk — go about your day feeling steady and supported." }}
+  ]}]
+}
+{% endschema %}

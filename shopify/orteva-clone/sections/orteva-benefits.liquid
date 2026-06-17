@@ -1,0 +1,43 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="shopify-section-{{ section.id }}-b" style="background:#f5f8fc">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="orteva-grid orteva-grid--3">
+      {%- for block in section.blocks -%}
+      <article class="orteva-tile" style="display:flex;gap:1rem" {{ block.shopify_attributes }}>
+        <span class="orteva-tile__ico" style="margin-bottom:0">&#9889;</span>
+        <div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.body }}</p></div>
+      </article>
+      {%- endfor -%}
+    </div>
+    <div class="orteva-cta-center"><a href="#orteva-hero" class="orteva-btn">{{ section.settings.cta }}</a></div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Benefits",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The payoff" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What changes when your knees feel supported" },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Get back to your day" }
+  ],
+  "blocks": [
+    { "type": "b", "name": "Benefit", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Real, everyday relief" },
+      { "type": "textarea", "id": "body", "label": "Body", "default": "Support where you feel it most." }
+    ]}
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Orteva Benefits", "blocks": [
+    { "type": "b", "settings": { "title": "Real, everyday relief", "body": "Support where you feel it most, so the day stops revolving around your knees." }},
+    { "type": "b", "settings": { "title": "Steadier on your feet", "body": "The gel ring helps you feel centered and confident on stairs and uneven ground." }},
+    { "type": "b", "settings": { "title": "Less end-of-day swelling", "body": "Even compression helps manage the puffiness that creeps in after a busy day." }},
+    { "type": "b", "settings": { "title": "Move more freely", "body": "Get back to the walks, errands and hobbies you’d quietly started avoiding." }},
+    { "type": "b", "settings": { "title": "Comfort that lasts", "body": "Breathable, slim and light — comfortable enough to forget you’re wearing it." }},
+    { "type": "b", "settings": { "title": "Gym to everyday", "body": "From a workout to the supermarket, one sleeve that keeps up with your whole day." }}
+  ]}]
+}
+{% endschema %}

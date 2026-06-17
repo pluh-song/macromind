@@ -1,0 +1,55 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="orteva-reviews" style="background:#fff">
+  <div class="orteva-container">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem">
+      <div class="orteva-head orteva-head--left" style="margin-bottom:0">
+        <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+      </div>
+      <div style="text-align:right">
+        <div style="display:flex;align-items:center;gap:.5rem;justify-content:flex-end"><span style="font-size:1.9rem;font-weight:800">4.8</span><span class="orteva-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p style="color:#5b6b80;font-size:.85rem;margin:.2rem 0 0">3,000+ verified reviews</p>
+      </div>
+    </div>
+    <div class="orteva-rev" style="margin-top:2rem">
+      {%- for block in section.blocks -%}
+      <article class="orteva-rev__card" {{ block.shopify_attributes }}>
+        <div class="orteva-rev__head">
+          <span class="orteva-rev__avi">{{ block.settings.name | slice: 0 }}</span>
+          <div><p class="orteva-rev__name">{{ block.settings.name }} <span class="orteva-rev__verified">&#10003; Verified</span></p>
+          <p class="orteva-rev__meta">{{ block.settings.meta }}</p></div>
+        </div>
+        <p class="orteva-stars" style="margin-top:.6rem">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p class="orteva-rev__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Reviews",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Real people, real days" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Loved by 30,000+ knees" }
+  ],
+  "blocks": [
+    { "type": "rev", "name": "Review", "settings": [
+      { "type": "text", "id": "name", "label": "Name", "default": "Margaret R." },
+      { "type": "text", "id": "meta", "label": "Age & context", "default": "62 · Lives with arthritis" },
+      { "type": "textarea", "id": "quote", "label": "Quote", "default": "Orteva changed my mornings." }
+    ]}
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Orteva Reviews", "blocks": [
+    { "type": "rev", "settings": { "name": "Margaret R.", "meta": "62 · Lives with arthritis", "quote": "The morning stiffness used to set the tone for my whole day. Now I put Orteva on with my coffee and the first hour just feels… normal again." }},
+    { "type": "rev", "settings": { "name": "Dale W.", "meta": "34 · Marathon runner", "quote": "I wear it on long runs and my knee feels noticeably more stable on the downhills. The gel ring actually stays put — no sliding." }},
+    { "type": "rev", "settings": { "name": "Anita P.", "meta": "49 · ICU nurse", "quote": "Twelve-hour shifts on hard floors. By hour ten my knees used to be done. This has genuinely changed how I feel walking to my car." }},
+    { "type": "rev", "settings": { "name": "Frank T.", "meta": "71 · Daily dog-walker", "quote": "I’d shortened my walks without really admitting it. Got the 2-pack, one for each knee, and Buddy and I are back to the long loop." }},
+    { "type": "rev", "settings": { "name": "Priya S.", "meta": "38 · Weekend hiker", "quote": "Slim enough to wear under leggings, supportive enough that uneven trails don’t worry me anymore. Wish I’d found it sooner." }},
+    { "type": "rev", "settings": { "name": "Robert M.", "meta": "58 · 6 weeks post-surgery", "quote": "My physio okayed light compression and this was comfortable from day one. The non-slip bands mean I’m not constantly tugging it up." }},
+    { "type": "rev", "settings": { "name": "Yvonne C.", "meta": "66 · Retired teacher", "quote": "Stairs were the worst part of my day. They’re still stairs — but I don’t dread them the same way. That’s worth a lot to me." }},
+    { "type": "rev", "settings": { "name": "Marcus J.", "meta": "29 · Rec-league basketball", "quote": "Confidence on the court is back. Light, breathable, doesn’t bunch behind the knee when I’m moving. Bought a second one immediately." }}
+  ]}]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section orteva-navy" id="shopify-section-{{ section.id }}-sc">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+      <p class="orteva-sub">{{ section.settings.subhead }}</p>
+    </div>
+    <div class="orteva-grid orteva-grid--3">
+      <div class="orteva-darktile"><h3>Circulation support</h3><p>Graduated compression is widely used to support healthy blood flow in the limbs.</p></div>
+      <div class="orteva-darktile"><h3>Swelling management</h3><p>Even, consistent pressure is a common, practical way to help manage everyday swelling.</p></div>
+      <div class="orteva-darktile"><h3>Joint &amp; ligament support</h3><p>External support around a joint can add a reassuring sense of stability during activity.</p></div>
+      <div class="orteva-darktile"><h3>Proprioception</h3><p>Compression around the knee can heighten position-awareness — that “I know where my leg is” feeling.</p></div>
+    </div>
+    <div class="orteva-stats">
+      <div class="orteva-stat"><b>92%</b><span>reported less discomfort within 2 weeks*</span></div>
+      <div class="orteva-stat"><b>9/10</b><span>would recommend to a friend*</span></div>
+      <div class="orteva-stat"><b>30,000+</b><span>knees supported worldwide</span></div>
+    </div>
+    <div style="max-width:760px;margin:2rem auto 0;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.25rem 1.5rem">
+      <details><summary style="cursor:pointer;color:#fff;font-weight:700">Clinical research summary</summary>
+      <p style="color:rgba(255,255,255,.75);margin:.75rem 0 0;line-height:1.6;font-size:.92rem">{{ section.settings.research }}</p></details>
+    </div>
+    <p class="orteva-foot">{{ section.settings.footnote }}</p>
+    <p class="orteva-foot">{{ section.settings.disclaimer }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Science",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The science of compression" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why compression can help — in plain language" },
+    { "type": "text", "id": "subhead", "label": "Subhead", "default": "No hype. Just the simple, well-understood reasons compression and support are so widely used." },
+    { "type": "textarea", "id": "research", "label": "Research summary", "default": "Compression garments and knee bracing are widely studied and commonly used to support circulation, help manage swelling, and provide a sense of joint stability and position awareness. This describes the general body of research on compression and bracing — it is not a claim about Orteva specifically, and individual results vary." },
+    { "type": "textarea", "id": "footnote", "label": "Stat footnote", "default": "*Based on a voluntary Orteva customer-satisfaction survey of 412 verified buyers, two weeks after first use. Self-reported comfort, not a clinical outcome. Individual results vary." },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "Orteva is a wellness and support garment intended to provide comfort and compression. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease. Statements have not been evaluated by the FDA. Consult a qualified healthcare provider for diagnosed conditions. Individual results vary." }
+  ],
+  "presets": [{ "name": "Orteva Science" }]
+}
+{% endschema %}

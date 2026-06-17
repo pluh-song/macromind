@@ -1,0 +1,32 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+{%- assign dv = product.variants | where: 'title', '2 Sleeves' | first -%}
+{%- unless dv -%}{%- assign dv = product.selected_or_first_available_variant -%}{%- endunless -%}
+<div class="orteva-scope orteva-sticky" id="orteva-sticky">
+  <img src="{{ product.featured_media | image_url: width: 96 }}" alt="">
+  <div class="orteva-sticky__info">
+    <b>{{ product.title }}</b>
+    <span><strong id="orteva-st-price">{{ dv.price | money }}</strong> <s id="orteva-st-was">{{ dv.compare_at_price | money }}</s></span>
+  </div>
+  <button type="button" class="orteva-btn" onclick="ortevaStickyAdd()">Add to cart</button>
+</div>
+<script>
+  (function(){
+    var st = document.getElementById('orteva-sticky');
+    var hero = document.getElementById('orteva-hero');
+    if(st && hero && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(e){ st.classList.toggle('is-visible', !e[0].isIntersecting); }).observe(hero);
+    }
+    document.addEventListener('orteva:variant', function(ev){
+      var d = ev.detail || {};
+      if(d.price) document.getElementById('orteva-st-price').textContent = d.price;
+      if(d.compare) document.getElementById('orteva-st-was').textContent = d.compare;
+    });
+  })();
+  function ortevaStickyAdd(){
+    if(typeof ortevaAddToCart === 'function'){ ortevaAddToCart(); }
+    else { window.location.href='/cart'; }
+  }
+</script>
+{% schema %}
+{ "name": "Orteva Sticky ATC", "settings": [], "presets": [{ "name": "Orteva Sticky ATC" }] }
+{% endschema %}

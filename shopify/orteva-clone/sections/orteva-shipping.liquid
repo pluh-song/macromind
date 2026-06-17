@@ -1,0 +1,41 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section orteva-navy" id="shopify-section-{{ section.id }}-sh">
+  <div class="orteva-container">
+    <div class="orteva-hero__grid" style="align-items:center">
+      <div>
+        <div class="orteva-head orteva-head--left">
+          <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+          <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+          <p class="orteva-sub">{{ section.settings.subhead }}</p>
+        </div>
+        <div class="orteva-ship__grid">
+          <div class="orteva-darktile"><h3>Free shipping</h3><p>On every order, no minimum.</p></div>
+          <div class="orteva-darktile"><h3>Fully tracked</h3><p>Follow it from our door to yours.</p></div>
+          <div class="orteva-darktile"><h3>42+ countries served</h3><p>Trusted by customers worldwide.</p></div>
+          <div class="orteva-darktile"><h3>Free returns</h3><p>30-day comfort-fit guarantee.</p></div>
+        </div>
+      </div>
+      <div class="orteva-ship__map">
+        {%- if section.settings.map_image != blank -%}
+          <img src="{{ section.settings.map_image | image_url: width: 900 }}" alt="World shipping map" width="900" height="600" loading="lazy">
+        {%- else -%}
+          <div style="aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#16243a,#0a1220 70%);box-shadow:0 0 80px rgba(29,111,224,.35),inset 0 0 60px rgba(29,111,224,.25);max-width:420px;margin:0 auto;position:relative">
+            <div style="position:absolute;inset:0;border-radius:50%;background-image:radial-gradient(rgba(124,176,243,.5) 1.4px,transparent 1.4px);background-size:18px 18px;opacity:.45;mix-blend-mode:screen"></div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Shipping",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Free worldwide shipping" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Free worldwide shipping — wherever your day takes you" },
+    { "type": "textarea", "id": "subhead", "label": "Subhead", "default": "Every Orteva order ships free and fully tracked, with fast dispatch. Need a different size or side? Returns and exchanges are always free." },
+    { "type": "image_picker", "id": "map_image", "label": "Map / globe image (optional)" }
+  ],
+  "presets": [{ "name": "Orteva Shipping" }]
+}
+{% endschema %}

@@ -1,0 +1,33 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="shopify-section-{{ section.id }}-cmp" style="background:#f5f8fc">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+      <p class="orteva-sub">{{ section.settings.subhead }}</p>
+    </div>
+    <div class="orteva-cmp">
+      <div class="orteva-cmp__row orteva-cmp__row--head">
+        <div></div><div class="orteva-cmp__a">Orteva</div><div class="orteva-cmp__b">Generic sleeve</div>
+      </div>
+      {%- assign rows = section.settings.rows | newline_to_br | split: '<br />' -%}
+      {%- for row in rows -%}{%- assign t = row | strip -%}{%- if t != '' -%}
+      <div class="orteva-cmp__row"><div>{{ t }}</div><div class="orteva-cmp__yes">&#10003;</div><div class="orteva-cmp__no">&#10005;</div></div>
+      {%- endif -%}{%- endfor -%}
+    </div>
+    <div class="orteva-cta-center"><a href="#orteva-hero" class="orteva-btn">{{ section.settings.cta }}</a></div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Comparison",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why it’s worth it" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Orteva vs. a generic sleeve" },
+    { "type": "text", "id": "subhead", "label": "Subhead", "default": "A few dollars more, and a completely different experience on your knee." },
+    { "type": "textarea", "id": "rows", "label": "Comparison rows (one per line)", "default": "Graduated medical-grade compression\nAnatomical gel stabilizer ring\nBreathable, moisture-wicking knit\nDual non-slip silicone grip bands\nSized by body weight (S–XL)\nLeft / right specific shaping\nFree returns & free size/side exchanges" },
+    { "type": "text", "id": "cta", "label": "Button", "default": "Choose Orteva" }
+  ],
+  "presets": [{ "name": "Orteva Comparison" }]
+}
+{% endschema %}

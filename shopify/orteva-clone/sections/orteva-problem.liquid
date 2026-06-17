@@ -1,0 +1,45 @@
+{{ 'orteva-styles.css' | asset_url | stylesheet_tag }}
+<section class="orteva-scope orteva-section" id="shopify-section-{{ section.id }}-p" style="background:#f5f8fc">
+  <div class="orteva-container">
+    <div class="orteva-head">
+      <span class="orteva-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="orteva-h2">{{ section.settings.heading }}</h2>
+      <p class="orteva-sub">{{ section.settings.subhead }}</p>
+    </div>
+    <div class="orteva-grid orteva-grid--3">
+      {%- for block in section.blocks -%}
+      <article class="orteva-tile" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.body }}</p>
+      </article>
+      {%- endfor -%}
+    </div>
+    <p class="orteva-quote">&ldquo;{{ section.settings.quote }}&rdquo;</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Orteva Problem",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Sound familiar?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Does knee pain quietly hold you back?" },
+    { "type": "text", "id": "subhead", "label": "Subhead", "default": "It rarely announces itself. It just slowly shrinks what your day looks like." },
+    { "type": "text", "id": "quote", "label": "Closing quote", "default": "You shouldn’t have to plan your life around your knees." }
+  ],
+  "blocks": [
+    { "type": "card", "name": "Pain card", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Stairs feel like a decision" },
+      { "type": "textarea", "id": "body", "label": "Body", "default": "That flush of dread before every staircase — up to bed, down to the laundry. You start counting steps." }
+    ]}
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Orteva Problem", "blocks": [
+    { "type": "card", "settings": { "title": "Stairs feel like a decision", "body": "That flush of dread before every staircase — up to bed, down to the laundry. You start counting steps." }},
+    { "type": "card", "settings": { "title": "You quietly stopped doing things", "body": "The garden, the long walk, the dance floor. Nobody announced it. Your knees just made the call for you." }},
+    { "type": "card", "settings": { "title": "Standing wears you down", "body": "A shift, a queue, a kitchen afternoon. By the end your knees are doing all the complaining." }},
+    { "type": "card", "settings": { "title": "Mornings start rusty", "body": "That first step out of bed has an ache built in. It loosens eventually — but you shouldn’t have to wait for it." }},
+    { "type": "card", "settings": { "title": "Swelling that won’t quit", "body": "After a busy day the puffiness settles in and lingers, long after you’ve put your feet up." }},
+    { "type": "card", "settings": { "title": "That “might give out” feeling", "body": "On a curb, a wet floor, a hike downhill — the little wobble that makes you brace and slow right down." }}
+  ]}]
+}
+{% endschema %}
